@@ -1,14 +1,16 @@
 package main;
 
-import java.util.ArrayList;
-
 public class Player {	
 	private int maxWeight;
 	private int currentWeight;
-	private ArrayList<Item> inventory;
+	private Inventory inventory; 
+	
+	
 	public Player() {
 		maxWeight = 150;
-		inventory = new ArrayList<>();
+		currentWeight = 0;
+		inventory = new Inventory();
+			
 	}
 	public int getMaxWeight() {
 		return maxWeight;
@@ -18,15 +20,16 @@ public class Player {
 		return currentWeight;
 	}
 
-	public ArrayList<Item> getInventory() {
-		return inventory;
+	public String[] getInventoryNames() {
+		return inventory.getInventoryNames();
 	}
-
-	public boolean putItemInInv(Item item) {
+	
+	public boolean putItemInInv(String input) {
 		boolean success = false;
-		if (currentWeight + item.getWeight() <= maxWeight) {
-			inventory.add(item);
-			currentWeight += item.getWeight();
+		Item current = inventory.getItemByName(input);
+		if (currentWeight + current.getWeight() <= maxWeight) {
+			inventory.addItemByName(input);	
+			currentWeight += current.getWeight();
 			success = true;
 		}
 		return success;
