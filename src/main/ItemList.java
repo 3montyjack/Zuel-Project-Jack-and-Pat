@@ -24,7 +24,7 @@ public class ItemList {
 	public Item getItemByName(String input) {
 		Item item = null;
 		for (Item current: list) {
-			if (current.getType().equals(input)) {
+			if (current.getName().equals(input)) {
 				item = current;
 			}
 		}

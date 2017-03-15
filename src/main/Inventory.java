@@ -51,7 +51,7 @@ public class Inventory {
 		String[] inv = new String[inventory.size()];
 		int index = 0;
 		for (Item name: inventory.keySet()) {
-			inv[index] = name.getType();
+			inv[index] = name.getName();
 			index++;
 		}
 		return inv;

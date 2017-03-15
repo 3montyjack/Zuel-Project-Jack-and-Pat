@@ -4,7 +4,7 @@ public class Item {
 	private int weight;
 	private String type;
 	public Item(String type, int weight) {
-		this.setType(type);
+		this.setName(type);
 		this.setWeight(weight);
 	}
 	public int getWeight() {
@@ -13,10 +13,10 @@ public class Item {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
-	public String getType() {
+	public String getName() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setName(String type) {
 		this.type = type;
 	}
 	
