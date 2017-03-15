@@ -13,6 +13,7 @@ package main;
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  * 
+ * Hi my names patrick
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
  */
@@ -21,6 +22,8 @@ public class Game
 {
     private Parser parser;	
     private Room currentRoom;
+    private Player player;
+    private int invSize;
         
     /**
      * Create the game and initialise its internal map.
@@ -28,7 +31,9 @@ public class Game
     public Game() 
     {
         createRooms();
+        invSize = 20;
         parser = new Parser();
+        player = new Player(invSize);
     }
 
     /**

@@ -5,13 +5,18 @@ public class Player {
 	private int currentWeight;
 	private Inventory inventory; 
 	
+	public Player(int weight) {
+		maxWeight = weight;
+		currentWeight = 0;
+		inventory = new Inventory();	
+	}
 	
 	public Player() {
 		maxWeight = 150;
 		currentWeight = 0;
 		inventory = new Inventory();
-			
 	}
+	
 	public int getMaxWeight() {
 		return maxWeight;
 	}
