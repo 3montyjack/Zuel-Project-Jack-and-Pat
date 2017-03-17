@@ -14,8 +14,11 @@ public class ItemList {
 	
 	
 	private void initializeList() {
-		list.add(new Item("Sword", 10));
-		list.add(new Item("Dagger", 30));
+		list.add(new Item("sword", 30, 5, "weapon", "A short, durable steel sword. The blade is slightly dull.", true));
+		list.add(new Item("dagger", 10, 3, "weapon", "A small dagger. There is an engraving on the handle in\n"
+				+ " a language you don't recognize.", true));
+		list.add(new Item("crate", 150, 0, "storage", "A sealed wooden box. What do goblins have to store?", false));
+		
 		
 	}
 
