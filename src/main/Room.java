@@ -1,7 +1,8 @@
 package main;
 
-import java.util.Set;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Class Room - a room in an adventure game.
@@ -19,8 +20,9 @@ import java.util.HashMap;
 
 public class Room 
 {
+    private String type;
     private String description;
-    private HashMap<String, Room> exits;        // stores exits of this room.
+    private ArrayList<String	> exits;        // stores exits of this room.
 
     /**
      * Create a room described "description". Initially, it has
@@ -28,29 +30,61 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String type) 
     {
-        this.description = description;
-        exits = new HashMap<>();
+        this.type = type;
+        exits = new ArrayList<>();
+        generate();
     }
 
-    /**
-     * Define an exit from this room.
-     * @param direction The direction of the exit.
-     * @param neighbor  The room to which the exit leads.
-     */
-    public void setExit(String direction, Room neighbor) 
-    {
-        exits.put(direction, neighbor);
-    }
+    
 
-    /**
+    private void generate() {
+		switch (type) {
+		case "Baracks": 
+			generateBaracks();
+			break;
+		case "Prision":
+			generatePrision();
+			break;
+		case "Cave":
+			generateCave();
+			break;
+		}
+		
+	}
+
+
+
+	private void generateCave() {
+		// TODO Auto-generated method stub
+		description = "Hello";
+		
+	}
+
+
+
+	private void generatePrision() {
+		// TODO Auto-generated method stub
+		description = "Hello";
+	}
+
+
+
+	private void generateBaracks() {
+		// TODO Auto-generated method stub
+		description = "Hello";
+	}
+
+
+
+	/**
      * @return The short description of the room
      * (the one that was defined in the constructor).
      */
     public String getShortDescription()
     {
-        return description;
+        return type;
     }
 
     /**
@@ -61,7 +95,7 @@ public class Room
      */
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + description + ".\n" + getExitString(); //TODO  Description based on type
     }
 
     /**
@@ -72,22 +106,12 @@ public class Room
     private String getExitString()
     {
         String returnString = "Exits:";
-        Set<String> keys = exits.keySet();
+        ArrayList<String> keys = exits;
         for(String exit : keys) {
             returnString += " " + exit;
         }
         return returnString;
     }
-
-    /**
-     * Return the room that is reached if we go from this room in direction
-     * "direction". If there is no room in that direction, return null.
-     * @param direction The exit's direction.
-     * @return The room in the given direction.
-     */
-    public Room getExit(String direction) 
-    {
-        return exits.get(direction);
-    }
+    
 }
 
