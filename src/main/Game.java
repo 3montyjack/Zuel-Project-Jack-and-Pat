@@ -21,50 +21,19 @@ package main;
 public class Game 
 {
     private Parser parser;	
-    private Room currentRoom;
     private Player player;
     private int invSize;
+    private Map map;
         
     /**
      * Create the game and initialise its internal map.
      */
     public Game() 
     {
-        createRooms();
         invSize = 20;
         parser = new Parser();
         player = new Player(invSize);
-    }
-
-    /**
-     * Create all the rooms and link their exits together.
-     */
-    private void createRooms()
-    {
-        Room outside, theater, pub, lab, office;
-      
-        // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
-        
-        // initialise room exits
-        outside.setExit("east", theater);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
-
-        theater.setExit("west", outside);
-
-        pub.setExit("east", outside);
-
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
-
-        currentRoom = outside;  // start game outside
+        map = new Map();
     }
 
     /**
@@ -95,7 +64,7 @@ public class Game
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(map.getLongDescription());
     }
 
     /**
@@ -157,14 +126,14 @@ public class Game
         String direction = command.getSecondWord();
 
         // Try to leave current room.
-        Room nextRoom = currentRoom.getExit(direction);
+        Boolean good = map.move(direction);
 
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
+        if (good) {
+        	System.out.println(map.getLongDescription());
         }
         else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+        	System.out.println("There is no door!");
+            
         }
     }
 
