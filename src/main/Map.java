@@ -12,7 +12,6 @@ public class Map {
 	private String[] rooms;
 	private Random rand;
 	private boolean seeded;
-	int counter;
 
 	public Map() {
 		int size = 5;
@@ -84,7 +83,6 @@ public class Map {
 	}
 
 	private void initializeRandom() {
-		counter = 0;
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
 				if (rand.nextBoolean()) {
@@ -95,7 +93,8 @@ public class Map {
 		map[centerRoom[0]][centerRoom[1]] = new Room("Cave");
 		connectedRooms(getPossibleLocations(), getLocation());
 		int connectedRooms = removeUnConnectedRooms();
-		if (connectedRooms < map.length*2 && !seeded) {;
+		if (connectedRooms < map.length * 2 && !seeded) {
+			;
 			initializeRandom();
 		}
 	}
@@ -105,10 +104,10 @@ public class Map {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {
 				if (map[i][j] != null) {
-					if (map[i][j].getConnected()) {
-						counter += 1;
-					} else {
+					if (!map[i][j].getConnected()) {
+
 						map[i][j] = null;
+
 					}
 				}
 			}
@@ -117,7 +116,6 @@ public class Map {
 	}
 
 	public void connectedRooms(ArrayList<String> possibleLocations, int[] currentLocation) {
-		counter++;
 		map[currentLocation[0]][currentLocation[1]].setConnected();
 		if (possibleLocations.size() > 0) {
 			for (String direction : possibleLocations) {
@@ -300,6 +298,11 @@ public class Map {
 			currentLocation = getNewLocation(currentLocation, direction);
 		}
 		return flag;
+	}
+	public void moveBack() {
+		int[] localNumber = lastLocation.clone();
+		lastLocation = currentLocation.clone();
+		currentLocation = localNumber.clone();
 	}
 
 	public String getLongDescription() {
