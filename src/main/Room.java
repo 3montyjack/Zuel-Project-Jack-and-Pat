@@ -23,6 +23,7 @@ public class Room
     private String type;
     private String description;
     private ArrayList<String	> exits;        // stores exits of this room.
+    private boolean connected;
 
     /**
      * Create a room described "description". Initially, it has
@@ -33,6 +34,7 @@ public class Room
     public Room(String type) 
     {
         this.type = type;
+        connected = false;
         exits = new ArrayList<>();
         generate();
     }
@@ -112,6 +114,16 @@ public class Room
         }
         return returnString;
     }
+    
+    public void setConnected() {
+    	connected = true;
+    }
+    
+    public boolean getConnected() {
+    	return connected;
+    }
+    
+    
     
 }
 
