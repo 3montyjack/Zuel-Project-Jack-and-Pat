@@ -36,6 +36,7 @@ public class Room
         this.type = type;
         connected = false;
         exits = new ArrayList<>();
+        
         generate();
     }
 
@@ -108,10 +109,6 @@ public class Room
     private String getExitString()
     {
         String returnString = "Exits:";
-        ArrayList<String> keys = exits;
-        for(String exit : keys) {
-            returnString += " " + exit;
-        }
         return returnString;
     }
     

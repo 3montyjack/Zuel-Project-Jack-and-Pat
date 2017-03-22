@@ -298,7 +298,7 @@ public class Map {
 		}
 		return flag;
 	}
-	
+
 	public void moveBack() {
 		int[] localNumber = lastLocation.clone();
 		lastLocation = currentLocation.clone();
@@ -306,7 +306,13 @@ public class Map {
 	}
 
 	public String getLongDescription() {
-		return map[currentLocation[0]][currentLocation[1]].getLongDescription();
+		String returnString = map[currentLocation[0]][currentLocation[1]].getLongDescription();
+		ArrayList<String> keys = getPossibleLocations(currentLocation);
+        for(String exit : keys) {
+            returnString += " " + exit;
+        }
+        return returnString;
+		
 	}
 
 }

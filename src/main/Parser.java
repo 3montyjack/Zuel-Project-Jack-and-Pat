@@ -57,6 +57,7 @@ public class Parser
                 }
                 // note: we just ignore the rest of the input line.
             }
+            tokenizer.close();
         }
 
         // Now check whether this word is known. If so, create a command
@@ -76,4 +77,5 @@ public class Parser
     {
         commands.showAll();
     }
+   
 }
