@@ -304,7 +304,32 @@ public class Map {
 		lastLocation = currentLocation.clone();
 		currentLocation = localNumber.clone();
 	}
-
+	
+	public boolean checkTeleport() {
+		boolean port = false;
+		if (map[currentLocation[0]][currentLocation[1]].getItemByName("teleporter") == true){
+			port = true;
+		}
+		return port;
+	}
+	
+	public void teleport() {
+		int x = rand.nextInt(map.length);
+		int y = rand.nextInt(map.length);
+		boolean port = false;
+		while (port == false) {
+			if (map[x][y] == null) {
+				x = rand.nextInt(map.length);
+				y = rand.nextInt(map.length);
+			} else {
+				port = true;
+			}
+		}	
+		lastLocation = currentLocation.clone();
+		x = currentLocation[0];
+		y = currentLocation[1];
+	}
+	
 	public String getLongDescription() {
 		String returnString = map[currentLocation[0]][currentLocation[1]].getLongDescription();
 		ArrayList<String> keys = getPossibleLocations(currentLocation);
