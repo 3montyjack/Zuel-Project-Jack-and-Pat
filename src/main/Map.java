@@ -114,7 +114,7 @@ public class Map {
 		return counter;
 	}
 
-	public void connectedRooms(ArrayList<String> possibleLocations, int[] currentLocation) {
+	private void connectedRooms(ArrayList<String> possibleLocations, int[] currentLocation) {
 		map[currentLocation[0]][currentLocation[1]].setConnected();
 		if (possibleLocations.size() > 0) {
 			for (String direction : possibleLocations) {
@@ -172,19 +172,19 @@ public class Map {
 		return map[currentLocationL[0]][currentLocationL[1]].getConnected();
 	}
 
-	public int[] getLocation() {
+	private int[] getLocation() {
 		int[] value = new int[2];
 		value[0] = currentLocation[0];
 		value[1] = currentLocation[1];
 		return value;
 	}
 
-	public boolean checkRoomNorth() {
+	private boolean checkRoomNorth() {
 		int[] location = getLocation();
 		return checkRoomNorth(location);
 	}
 
-	public boolean checkRoomNorth(int[] location) {
+	private boolean checkRoomNorth(int[] location) {
 		boolean north = false;
 		if (location[1] != map.length - 1 && map[location[0]][location[1] + 1] != null) {
 			north = true;
@@ -192,12 +192,12 @@ public class Map {
 		return north;
 	}
 
-	public boolean checkRoomSouth() {
+	private boolean checkRoomSouth() {
 		int[] location = getLocation();
 		return checkRoomSouth(location);
 	}
 
-	public boolean checkRoomSouth(int[] location) {
+	private boolean checkRoomSouth(int[] location) {
 		boolean south = false;
 		if (location[1] != 0 && map[location[0]][location[1] - 1] != null) {
 			south = true;
@@ -205,12 +205,12 @@ public class Map {
 		return south;
 	}
 
-	public boolean checkRoomEast() {
+	private boolean checkRoomEast() {
 		int[] location = getLocation();
 		return checkRoomEast(location);
 	}
 
-	public boolean checkRoomEast(int[] location) {
+	private boolean checkRoomEast(int[] location) {
 		boolean east = false;
 		if (location[0] != map.length - 1 && map[location[0] + 1][location[1]] != null) {
 			east = true;
@@ -218,12 +218,12 @@ public class Map {
 		return east;
 	}
 
-	public boolean checkRoomWest() {
+	private boolean checkRoomWest() {
 		int[] location = getLocation();
 		return checkRoomWest(location);
 	}
 
-	public boolean checkRoomWest(int[] location) {
+	private boolean checkRoomWest(int[] location) {
 		boolean west = false;
 		if (location[0] != 0 && map[location[0] - 1][location[1]] != null) {
 			west = true;
@@ -231,7 +231,7 @@ public class Map {
 		return west;
 	}
 
-	public ArrayList<String> getPossibleLocations() {
+	private ArrayList<String> getPossibleLocations() {
 		ArrayList<String> locations = new ArrayList<String>();
 		if (checkRoomNorth()) {
 			locations.add("North");
@@ -248,7 +248,7 @@ public class Map {
 		return locations;
 	}
 
-	public ArrayList<String> getPossibleLocations(int[] currentLocation) {
+	private ArrayList<String> getPossibleLocations(int[] currentLocation) {
 		ArrayList<String> locations = new ArrayList<String>();
 		if (!(currentLocation[0] == map.length) && !(currentLocation[1] == map.length)) {
 			if (checkRoomNorth(currentLocation)) {
@@ -298,6 +298,7 @@ public class Map {
 		}
 		return flag;
 	}
+	
 	public void moveBack() {
 		int[] localNumber = lastLocation.clone();
 		lastLocation = currentLocation.clone();

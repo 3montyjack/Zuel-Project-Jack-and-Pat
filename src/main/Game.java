@@ -90,6 +90,8 @@ public class Game
         }
         else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
+        } else if (commandWord.equals("back")) {
+        	goBack();
         }
         // else command not recognised.
         return wantToQuit;
@@ -135,6 +137,11 @@ public class Game
         	System.out.println("There is no door!");
             
         }
+    }
+    
+    private void goBack() {
+    	map.moveBack();
+    	System.out.println(map.getLongDescription());
     }
 
     /** 
