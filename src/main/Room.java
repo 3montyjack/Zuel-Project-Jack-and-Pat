@@ -23,8 +23,9 @@ public class Room
     private String type;
     private String description;
     private ArrayList<String	> exits;        // stores exits of this room.
+    private Inventory inv;
     private boolean connected;
-
+    
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -47,8 +48,9 @@ public class Room
 		case "Baracks": 
 			generateBaracks();
 			break;
-		case "Prision":
-			generatePrision();
+		case "Prison":
+			//TODO Change Prision here and in the map class
+			generatePrison();
 			break;
 		case "Cave":
 			generateCave();
@@ -60,23 +62,20 @@ public class Room
 
 
 	private void generateCave() {
-		// TODO Auto-generated method stub
-		description = "Hello";
+		description = "in a very dark Cave";
 		
 	}
 
 
 
-	private void generatePrision() {
-		// TODO Auto-generated method stub
-		description = "Hello";
+	private void generatePrison() {
+		description = "in a room with what it looks like Shackles and a Cell";
 	}
 
 
 
 	private void generateBaracks() {
-		// TODO Auto-generated method stub
-		description = "Hello";
+		description = "in a room with ";
 	}
 
 
@@ -118,6 +117,14 @@ public class Room
     
     public boolean getConnected() {
     	return connected;
+    }
+    
+    public boolean getItemByName(String name) {
+    	boolean flag = false;
+    	if (inv.getItemByName(name) != null) {
+    		flag = true;
+    	}
+    	return flag;
     }
     
     
