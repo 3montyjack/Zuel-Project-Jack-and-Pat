@@ -94,7 +94,6 @@ public class Map {
 		connectedRooms(getPossibleLocations(), getLocation());
 		int connectedRooms = removeUnConnectedRooms();
 		if (connectedRooms < map.length * 2 && !seeded) {
-			;
 			initializeRandom();
 		}
 	}
