@@ -64,6 +64,9 @@ public class Room {
 		case "Cave":
 			generateCave(items);
 			break;
+		case "Teleporter":
+			generateTeleporter(items);
+			break;
 		}
 
 	}
@@ -89,6 +92,13 @@ public class Room {
 		description = "in a room with ";
 		items.add("sword");
 		items.add("crate");
+
+		populateItems(items);
+	}
+	
+	private void generateTeleporter(ArrayList<String> items) {
+		description = "in a room with ";
+		items.add("teleporter");
 
 		populateItems(items);
 	}

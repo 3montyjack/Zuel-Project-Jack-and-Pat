@@ -5,7 +5,7 @@ public class Enemy {
 	private int combatStat;
 	private String desc;
 	
-	public Enemy(int health, int combatStat, String desc) {
+	public Enemy(		int health, int combatStat, String desc) {
 		this.setHealth(health);
 		this.setCombatStat(combatStat);
 		this.setDesc(desc);

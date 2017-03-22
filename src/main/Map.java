@@ -328,7 +328,7 @@ public class Map {
         lastLocation = currentLocation.clone();
         x = currentLocation[0];
         y = currentLocation[1];
-    }
+    }	
    
     public String getLongDescription() {
         String returnString = map[currentLocation[0]][currentLocation[1]].getLongDescription();
