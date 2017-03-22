@@ -1,5 +1,6 @@
 	package main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Inventory {
@@ -55,6 +56,16 @@ public class Inventory {
 		for (Item name: inventory.keySet()) {
 			inv[index] = name.getName();
 			index++;
+		}
+		return inv;
+	}
+	
+	public ArrayList<String> getWeaponNames() {
+		ArrayList<String> inv = new ArrayList<String>();
+		for(Item item: inventory.keySet()) {
+			if(item.getType().equals("weapon")) {
+				inv.add(item.getName());
+			}
 		}
 		return inv;
 	}
