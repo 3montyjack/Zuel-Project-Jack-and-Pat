@@ -129,7 +129,7 @@ public class Map {
 				}
 			}
 		}
-
+		printMap();
 	}
 
 	public void printMap() {
