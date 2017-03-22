@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 import java.util.Random;
  
+//Hello World
 public class Map {
     private Room[][] map;
     private int size;
