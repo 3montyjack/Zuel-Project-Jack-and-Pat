@@ -40,6 +40,14 @@ public class Player {
 		return success;
 	}
 	
+	public boolean removeItem(String name) {
+		boolean flag = false;
+		if(inventory.removeItemByName(name)) {
+			flag = true;
+		}
+		return flag;
+	}
+	
 	
 
 }

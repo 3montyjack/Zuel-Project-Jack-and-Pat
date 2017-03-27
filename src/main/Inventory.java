@@ -22,6 +22,10 @@ public class Inventory {
 		return list.getItemByName(input);
 	}
 	
+	public boolean removeItemByName(String input) {
+		return removeItem(getItemByName(input));
+	}
+	
 	
 	
 	public void addItem(Item item) {

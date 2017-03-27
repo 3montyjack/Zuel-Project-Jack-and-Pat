@@ -340,5 +340,9 @@ public class Map {
         return returnString;
        
     }
+
+	public void addItemByNameCurrentRoom(String secondWord) {
+		map[currentLocation[0]][currentLocation[1]].addItemToInventoryByName(secondWord);
+	}
  
 }
