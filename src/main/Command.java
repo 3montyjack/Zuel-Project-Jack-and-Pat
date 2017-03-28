@@ -59,6 +59,10 @@ public class Command
         return secondWord;
     }
     
+    /**
+     * @return The third word of this command. Returns null if there was no
+     * third word.
+     */
     public String getThirdWord() {
     	return thirdWord;
     }
@@ -79,6 +83,9 @@ public class Command
         return (secondWord != null);
     }
     
+    /**
+     * @return true if the command has a third word.
+     */
     public boolean hasThirdWord() {
     	return (thirdWord != null);
     }

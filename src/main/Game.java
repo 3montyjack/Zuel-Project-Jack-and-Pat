@@ -1,23 +1,23 @@
 package main;
 
 /**
- *  This class is the main class of the "World of Zuul" application. 
- *  "World of Zuul" is a very simple, text based adventure game.  Users 
- *  can walk around some scenery. That's all. It should really be extended 
- *  to make it more interesting!
- * 
- *  To play this game, create an instance of this class and call the "play"
- *  method.
- * 
- *  This main class creates and initialises all the others: it creates all
- *  rooms, creates the parser and starts the game.  It also evaluates and
- *  executes the commands that the parser returns.
- * 
- * Hi my names patrick
- * @author  Michael Kölling and David J. Barnes
+ * This class is the main class of the "World of Zuul" application. "World of
+ * Zuul" is a very simple, text based adventure game. Users can walk around some
+ * scenery. That's all. It should really be extended to make it more
+ * interesting!
+ *
+ * To play this game, create an instance of this class and call the "play"
+ * method.
+ *
+ * This main class creates and initialises all the others: it creates all rooms,
+ * creates the parser and starts the game. It also evaluates and executes the
+ * commands that the parser returns.
+ *
+ *
+ * @author Patrick and Jack
  * @version 2016.02.29
  */
-
+ 
 public class Game 
 {
     private Parser parser;	
@@ -33,7 +33,7 @@ public class Game
         invSize = 20;
         parser = new Parser();
         player = new Player(invSize);
-        map = new Map();
+        map = new Map(5);
     }
 
     /**
@@ -92,6 +92,8 @@ public class Game
             wantToQuit = quit(command);
         } else if (commandWord.equals("back")) {
         	goBack();
+        } else if (commandWord.equals("inspect")) {
+        	inspect(command);
         }
         // else command not recognised.
         return wantToQuit;
@@ -99,7 +101,28 @@ public class Game
 
     // implementations of user commands:
 
-    /**
+    private void inspect(Command command) {
+    	String response = "";
+    	String secondLine = "";
+		if (command.hasSecondWord()) {
+			for (String word: map.currentRoom().getItemsNames()) {
+				if (word.equals(command.getSecondWord())) {
+					response = map.currentRoom().getItemActualByName(word).getDesc();
+				}
+			}
+			if (response == "") {
+				response = "There is no item in the room with the name " + command.getSecondWord() + ".";
+			}
+		} else {
+			response = map.getLongDescription();
+			secondLine = map.currentRoom().inspectItemsInRoom();
+		}
+		
+		System.out.println(response);
+		System.out.println(secondLine);
+	}
+
+	/**
      * Print out some help information.
      * Here we print some stupid, cryptic message and a list of the 
      * command words.
@@ -139,6 +162,9 @@ public class Game
         }
     }
     
+    /**
+     * returns the player to the previous room.
+     */
     private void goBack() {
     	map.moveBack();
     	System.out.println(map.getLongDescription());

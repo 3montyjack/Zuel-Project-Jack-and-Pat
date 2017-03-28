@@ -53,6 +53,7 @@ public class Room {
 	private void generate() {
 		ArrayList<String> items = new ArrayList<String>();
 		itemsInRoom = rand.nextInt(5);
+		inv = new Inventory();
 		switch (type) {
 		case "Baracks":
 			generateBaracks(items);
@@ -109,9 +110,12 @@ public class Room {
 		int index = 0;
 		while (iter.hasNext()) {
 			itemList[index] = iter.next();
+			index++;
 		}
 		for (int i = 0; i < itemsInRoom; i++) {
-			inv.addItemByName(itemList[rand.nextInt(items.size())]);
+			String itemName = itemList[rand.nextInt(items.size())];
+			inv.addItemByName(itemName);
+			//inv.addItemByName(itemList[rand.nextInt(items.size())]);
 		}
 	}
 
@@ -131,6 +135,36 @@ public class Room {
 	 */
 	public String getLongDescription() {
 		return "You are " + description + ".\n" + getExitString();
+	}
+	
+	/**
+	 * This method tales all of the items in the room and outputs them into a string
+	 * @return string of all of the item names 
+	 */
+	public String inspectItemsInRoom() {
+		String[] localNames = inv.getInventoryNames().clone();
+		String finalNames = "";
+		for (int i = 0; i < localNames.length; i++) {
+			if (i == 0) {
+				finalNames = localNames[i];
+			} else {
+			finalNames = finalNames + " " + localNames;
+			}
+		}
+		return finalNames;
+	}
+	
+	/**
+	 * This gets all of the item names and reurens an array list containing them
+	 * @return returns an arraylist with all of the names of the items.
+	 */
+	public ArrayList<String> getItemsNames() {
+		ArrayList<String> localNamess = new ArrayList<>();
+		String[] localNames = inv.getInventoryNames().clone();
+		for (int i = 0; i < localNames.length; i++) {
+			localNamess.add(localNames[i]);
+		}
+		return localNamess;
 	}
 
 	/**
@@ -158,6 +192,11 @@ public class Room {
 			flag = true;
 		}
 		return flag;
+	}
+	
+	public Item getItemActualByName(String name) {
+		return inv.getItemByName(name);
+		
 	}
 
 	public boolean takeObject(String name) {

@@ -104,8 +104,9 @@ public class Map {
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
                 if (map[i][j] != null) {
-                    if (!map[i][j].getConnected()) {
- 
+                    if (map[i][j].getConnected()) {
+                    	counter+=1;
+                    } else {
                         map[i][j] = null;
  
                     }
@@ -127,7 +128,6 @@ public class Map {
                 }
             }
         }
-        printMap();
     }
  
     public void printMap() {
@@ -341,4 +341,7 @@ public class Map {
        
     }
  
+    public Room currentRoom() {
+    	return map[currentLocation[0]][currentLocation[1]];
+    }
 }

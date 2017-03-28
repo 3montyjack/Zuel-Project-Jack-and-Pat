@@ -3,20 +3,41 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * A class that holds a list of Item objects. It is used in the game to
+ * keep track of the items held by a player, and also those held in a room.
+ * @author Patrick and Jack
+ *
+ */
+
 public class Inventory {
 
 	private HashMap	<Item, Integer> inventory;
 	private ItemList list;
+	
+	/**
+     * A Constructor that initializes the values for inventory and list.
+     */
 	
 	public Inventory() {
 		inventory = new HashMap<Item, Integer>();
 		list = new ItemList();
 	}
 	
+	/**
+     * Adds an item to the inventory based on an input.
+     * @param input
+     */
 	
 	public void addItemByName(String input) {
 		addItem(getItemByName(input));
 	}
+	
+	/**
+     * Gets an item by name and returns it.
+     * @param input
+     * @return an associated Item object.
+     */
 	
 	public Item getItemByName(String input) {
 		return list.getItemByName(input);
